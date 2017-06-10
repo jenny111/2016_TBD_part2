@@ -52,7 +52,8 @@ def getTrafficPerMinute(day, station, flag=0):
 
 	vols=np.zeros(60*24)
 	for e in results:
-		vols[e[0]]=e[1]
+		if e[0]<len(vols):
+			vols[e[0]]=e[1]
 	return list(vols)
 
 
@@ -66,7 +67,7 @@ def generateSeries(days,station,flag=0):
 	'''
 	ts=[]
 	for d in days:
-		vols=getTrafficPerMinute(d,station,flag)
+		ts=ts+getTrafficPerMinute(d,station,flag)
 	return ts
 
 
